@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block catalog %}
+active
+{% endblock %}
+
+<!--{% block create %}-->
+
+<!--{% endblock %}-->
+
+{% block title %}
+Каталог
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+        <h1>Найдено книг: {{books|length}}</h1>
+    </div>
+  </div>
+</div>
+
+
+{% for book in books %}
+<div class="alert alert-secondary" role="alert">
+          <h4 class="alert-heading">{{ book.name }}</h4>
+          <p>Автор: {{ book.author }}</p>
+          <p>Год: {{ book.year }}</p>
+          <p>Жанр: {{ book.genre }}</p>
+          <p>Страна: {{ book.country }}</p>
+          <p>Настрой: {{ Mood.query.filter_by(id=book.mood_id).first().name }}</p>
+
+
+</div>
+
+{% endfor %}
+
+{% endblock %}
